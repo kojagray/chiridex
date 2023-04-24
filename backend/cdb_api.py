@@ -19,6 +19,7 @@ def calculate_match(r, g, b):
         "color_name" : color_name
     }
 
+
 def _calculate_match(trgb):
     cdists = []
     for cidx, crow in colorsdb.iterrows():

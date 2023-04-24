@@ -11,9 +11,8 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 @app.route("/color/<int:r>/<int:g>/<int:b>")
-@cross_origin()
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def calculate_match(r, g, b):
-    print(type(r), type(g), type(b))
     target_rgb = (r, g, b)
     color_name = _calculate_match(target_rgb)
     return color_name

@@ -1,13 +1,17 @@
 import math 
 
 from flask import Flask
+from flask_cors import CORS, cross_origin
 import pandas as pd 
 
 colorsdb = pd.read_csv("colordb.csv")
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 
 @app.route("/color/<int:r>/<int:g>/<int:b>")
+@cross_origin()
 def calculate_match(r, g, b):
     print(type(r), type(g), type(b))
     target_rgb = (r, g, b)

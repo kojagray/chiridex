@@ -15,8 +15,9 @@ app.config["CORS_HEADERS"] = "Content-Type"
 def calculate_match(r, g, b):
     target_rgb = (r, g, b)
     color_name = _calculate_match(target_rgb)
-    return color_name
-
+    return {
+        "color_name" : color_name
+    }
 
 def _calculate_match(trgb):
     cdists = []

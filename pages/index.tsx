@@ -7,6 +7,7 @@ import classes from "../styles/wrappers.module.css";
 
 export default function Home() {
   const [color, setColor] = useState("");
+  const [rgb, setRgb] = useState([]);
   const [userImage, setUserImage] = useState(
     "/../public/monkey-head-nebula.jpg"
   );
@@ -16,16 +17,18 @@ export default function Home() {
     const data = await response.json();
     const retrievedColor = data.color_name;
     setColor(retrievedColor);
+    setRgb([r, g, b]);
   }
 
   const colorPickerHandler = () => {
     const colorResult = document.getElementById("colorResult");
-    const textResult = document.getElementById("textResult");
+    const hexResult = document.getElementById("hexResult");
+    const rgbResult = document.getElementById("rgbResult");
 
     const hexToRgb = (hex) => {
-      var r = parseInt(hex.slice(1, 3), 16);
-      var g = parseInt(hex.slice(3, 5), 16);
-      var b = parseInt(hex.slice(5), 16);
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5), 16);
       fetchColorHandler(r, g, b);
     };
 
@@ -34,7 +37,8 @@ export default function Home() {
     eyeDropper
       .open()
       .then((result) => {
-        textResult.textContent = result.sRGBHex;
+        hexResult.textContent = `HEX: ${result.sRGBHex}`;
+        rgbResult.textContent = `RGB(${rgb})`;
         colorResult.style.backgroundColor = result.sRGBHex;
         hexToRgb(result.sRGBHex);
       })
@@ -96,7 +100,8 @@ export default function Home() {
               : "Use the color picker to find the name of your color!"}
           </h1>
           <br />
-          <span id="textResult" className={classes.textResult} />
+          <span id="hexResult" className={classes.textResult} />
+          <span id="rgbResult" className={classes.textResult} />
           <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>

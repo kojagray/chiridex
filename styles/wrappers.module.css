@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.image {
+  object-fit: "cover";
+}
+
 .imageWrapper {
   height: calc(50vmin - 2vmin - 2vmin);
   margin-top: 1rem;

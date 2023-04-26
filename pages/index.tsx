@@ -89,6 +89,7 @@ export default function Home() {
               id="targetImage"
               src={userImage}
               fill
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>

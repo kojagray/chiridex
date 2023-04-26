@@ -14,7 +14,6 @@ export default function Home() {
     const response = await fetch(`http://127.0.0.1:5000/color/${r}/${g}/${b}`);
     const data = await response.json();
     const retrievedColor = data.color_name;
-    console.log("retrieved color: ", retrievedColor);
     setColor(retrievedColor);
   }
 
@@ -86,7 +85,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="tower">
+        <div className="tower padded">
           <h1>
             {color
               ? color

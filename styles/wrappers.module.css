@@ -14,15 +14,17 @@
 }
 
 .colorResult {
-  height: 2rem;
-  width: 2rem;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  height: 5rem;
+  width: 100%;
 }
 
 .imageWrapper {
   height: calc(50vmin - 2vmin - 2vmin);
   margin-top: 1rem;
   position: relative;
-  width: calc(50vmin - 2vmin - 2vmin);
+  width: auto;
 }
 
 .imageControlWrapper {

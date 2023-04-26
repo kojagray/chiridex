@@ -21,6 +21,10 @@ body {
   padding: 2vmin;
 }
 
+.centered > .tower {
+  width: 50%;
+}
+
 .MuiSvgIcon-root {
   color: white;
 }
@@ -41,4 +45,30 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+/* responsive font sizes */
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+* {
+  font-size: 1rem;
 }

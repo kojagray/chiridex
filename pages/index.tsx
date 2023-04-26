@@ -92,9 +92,10 @@ export default function Home() {
         <div className="tower padded roundedTile">
           <h1>
             {color
-              ? color
+              ? `The color you chose is called ${color}`
               : "Use the color picker to find the name of your color!"}
           </h1>
+          <br />
           <span id="textResult" className={classes.textResult} />
           <span id="colorResult" className={classes.colorResult} />
         </div>

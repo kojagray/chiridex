@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.centered {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2vmin;
+}
+
+.padded {
+  padding: 2vmin;
+}
+
+.roundedTile {
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px 5px lightgray;
+}
+
+.tower {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* move to module.css */
+
+.buttonWrapper {
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.buttonWrapper:hover {
+  cursor: pointer;
+}
+
+/* button wrapper colors */
+
+.blue {
+  background-color: rgb(2, 117, 216);
+}
+
+.blue:hover {
+  background-color: rgb(0, 100, 200);
+}
+
+.green {
+  background-color: rgb(0, 200, 100);
+}
+
+.green:hover {
+  background-color: rgb(0, 180, 80);
+}
+
+/* end */
+
+.imageContainer {
+  height: calc(50vmin - 2vmin - 2vmin);
+  margin-top: 1rem;
+  position: relative;
+  width: calc(50vmin - 2vmin - 2vmin);
+}
+
+.imageControls {
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.imageInput {
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.imageInput:hover {
+  cursor: pointer;
+}
+
+.start-button {
+}
+
+/* end */

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ColorizeIcon from "@mui/icons-material/Colorize";
+import classes from "../styles/wrappers.module.css";
 
 export default function Home() {
   const [color, setColor] = useState("");
@@ -18,7 +19,8 @@ export default function Home() {
   }
 
   const colorPickerHandler = () => {
-    const resultElement = document.getElementById("result");
+    const colorResult = document.getElementById("colorResult");
+    const textResult = document.getElementById("textResult");
 
     const hexToRgb = (hex) => {
       var r = parseInt(hex.slice(1, 3), 16);
@@ -32,13 +34,12 @@ export default function Home() {
     eyeDropper
       .open()
       .then((result) => {
-        resultElement.textContent = result.sRGBHex;
-        resultElement.style.backgroundColor = result.sRGBHex;
+        textResult.textContent = result.sRGBHex;
+        colorResult.style.backgroundColor = result.sRGBHex;
         hexToRgb(result.sRGBHex);
-        console.log(result.sRGBHex);
       })
       .catch((e) => {
-        resultElement.textContent = e;
+        colorResult.textContent = e;
       });
   };
 
@@ -60,8 +61,11 @@ export default function Home() {
       </Head>
       <div className="centered">
         <div className="tower padded roundedTile">
-          <nav className="imageControls">
-            <label className="imageInput blue" htmlFor="imageInput">
+          <nav className={classes.imageControlWrapper}>
+            <label
+              className={`${classes.imageInput} ${classes.blue}`}
+              htmlFor="imageInput"
+            >
               <AddPhotoAlternateIcon />
 
               <input
@@ -71,11 +75,11 @@ export default function Home() {
                 type="file"
               />
             </label>
-            <div className="buttonWrapper green">
+            <div className={`${classes.buttonWrapper} ${classes.green}`}>
               <ColorizeIcon id="colorPicker" onClick={colorPickerHandler} />
             </div>
           </nav>
-          <div className="imageContainer">
+          <div className={classes.imageWrapper}>
             <Image
               alt="An image for color picking"
               id="targetImage"
@@ -85,13 +89,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="tower padded">
+        <div className="tower padded roundedTile">
           <h1>
             {color
               ? color
               : "Use the color picker to find the name of your color!"}
           </h1>
-          <span id="result" />
+          <span id="textResult" className={classes.textResult} />
+          <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>
     </>

@@ -10,14 +10,22 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
-@app.route("/color/<int:r>/<int:g>/<int:b>")
+@app.route("/color/<hexcode>")
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
-def calculate_match(r, g, b):
-    target_rgb = (r, g, b)
+def calculate_match(hexcode):
+    target_rgb = hex_to_rgb(hexcode)
     color_name = _calculate_match(target_rgb)
     return {
         "color_name" : color_name
     }
+
+def hex_to_rgb(hexcode):
+    hexcode = hexcode[1:] 
+    rs, gs, bs = hexcode[0:2], hexcode[2:4], hexcode[4:]
+    r, g, b = int(rs, 16), int(gs, 16), int(bs, 16)
+
+    return (r, g, b)
+
 
 
 def _calculate_match(trgb):
@@ -33,7 +41,6 @@ def _calculate_match(trgb):
     
     return color_name
 
-
 def _euclidean_distance(dbrgb, trgb):
     dbx, dby, dbz = dbrgb
     tx, ty, tz = trgb
@@ -44,5 +51,6 @@ def _euclidean_distance(dbrgb, trgb):
 
     return math.sqrt(o0 + o1 + o2)
  
+
 
 

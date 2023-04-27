@@ -68,14 +68,14 @@ h5 {
 
 /* media queries */
 
-@media only screen and (orientation: landscape) {
-  .centered {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media only screen and (orientation: portrait) {
   .centered {
     grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .centered {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

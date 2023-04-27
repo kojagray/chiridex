@@ -1,4 +1,4 @@
-.buttonWrapper {
+.primaryContainer {
   align-items: center;
   border-radius: 15px;
   display: flex;
@@ -16,7 +16,6 @@
 .colorResult {
   border: 1px solid lightgray;
   border-radius: 15px;
-  height: 100%;
   width: 100%;
 }
 
@@ -24,17 +23,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.imageInput {
-  align-items: center;
-  border-radius: 15px;
-  display: flex;
-  height: fit-content;
-  justify-content: center;
-  margin: 0 0.5vmin;
-  padding: 1vmin;
-  width: fit-content;
 }
 
 .imageInput:hover {
@@ -53,11 +41,7 @@
   width: 100%;
 }
 
-.textResult {
-  margin-bottom: 1vmin;
-}
-
-.title {
+.marginBottom {
   margin-bottom: 1vmin;
 }
 
@@ -80,5 +64,11 @@
 @media only screen and (orientation: portrait) {
   .colorResult {
     height: 15vh;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .colorResult {
+    height: 100%;
   }
 }

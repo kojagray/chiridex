@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { useState } from "react";
+
+import classes from "../styles/wrappers.module.css";
+
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ColorizeIcon from "@mui/icons-material/Colorize";
-import classes from "../styles/wrappers.module.css";
 
 export default function Home() {
   const [color, setColor] = useState("");
@@ -66,11 +68,10 @@ export default function Home() {
         <div className="tower padded roundedTile">
           <nav className={classes.imageControlWrapper}>
             <label
-              className={`${classes.imageInput} ${classes.blue}`}
+              className={`${classes.primaryContainer} ${classes.blue}`}
               htmlFor="imageInput"
             >
               <AddPhotoAlternateIcon />
-
               <input
                 hidden
                 id="imageInput"
@@ -78,7 +79,7 @@ export default function Home() {
                 type="file"
               />
             </label>
-            <div className={`${classes.buttonWrapper} ${classes.green}`}>
+            <div className={`${classes.primaryContainer} ${classes.green}`}>
               <ColorizeIcon id="colorPicker" onClick={colorPickerHandler} />
             </div>
           </nav>
@@ -94,13 +95,13 @@ export default function Home() {
         </div>
 
         <div className="tower padded roundedTile">
-          <h1 className={classes.title}>
+          <h1 className={classes.marginBottom}>
             {color
               ? `The color you chose is called ${color}`
               : "Use the color picker to find the name of your color!"}
           </h1>
-          <h3 id="hexResult" className={classes.textResult} />
-          <h3 id="rgbResult" className={classes.textResult} />
+          <h3 id="hexResult" className={classes.marginBottom} />
+          <h3 id="rgbResult" className={classes.marginBottom} />
           <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>

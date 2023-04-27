@@ -9,9 +9,7 @@ import ColorizeIcon from "@mui/icons-material/Colorize";
 export default function Home() {
   const [color, setColor] = useState("");
   const [rgb, setRgb] = useState([]);
-  const [userImage, setUserImage] = useState(
-    "/../public/monkey-head-nebula.jpg"
-  );
+  const [userImage, setUserImage] = useState("");
 
   async function fetchColorHandler(hex) {
     const response = await fetch(`http://127.0.0.1:5000/color/${hex}`);
@@ -87,13 +85,30 @@ export default function Home() {
             </div>
           </nav>
           <div className={classes.imageWrapper}>
-            <img
-              alt="An image for color picking"
-              className={classes.targetImage}
-              id="targetImage"
-              src={userImage}
-              style={{ objectFit: "contain" }}
-            />
+            {!!userImage ? (
+              <img
+                alt="An image for color picking"
+                className={classes.targetImage}
+                id="targetImage"
+                src={userImage}
+                style={{ objectFit: "contain" }}
+              />
+            ) : (
+              <div className={classes.imagePlaceholder}>
+                Please upload an image
+                <label
+                  className={`${classes.placeholderButton}`}
+                  htmlFor="imageInput"
+                >
+                  <input
+                    hidden
+                    id="imageInput"
+                    onChange={onImageChange}
+                    type="file"
+                  />
+                </label>
+              </div>
+            )}
           </div>
         </div>
 

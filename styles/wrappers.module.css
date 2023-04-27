@@ -26,13 +26,40 @@
   justify-content: center;
 }
 
+.imagePlaceholder {
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  box-shadow: inset 0 0 10px 1px lightblue;
+  display: flex;
+  height: 35vh;
+  position: relative;
+  width: 35vh;
+  justify-content: center;
+}
+
+.placeholderButton {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.placeholderButton:hover {
+  cursor: pointer;
+  background-color: rgba(170, 215, 230, 0.1);
+  border-radius: 15px;
+}
+
 .primaryContainer:hover {
   cursor: pointer;
 }
 
 .imageWrapper {
+  align-items: center;
   border-radius: 15px;
+  display: flex;
   height: fit-content;
+  justify-content: center;
   margin-top: 1vmin;
   position: relative;
   width: auto;

@@ -8,27 +8,27 @@ import ColorizeIcon from "@mui/icons-material/Colorize";
 
 export default function Home() {
   const [color, setColor] = useState("");
-  const [rgb, setRgb] = useState([]);
+  const [rgb, setRgb] = useState("");
   const [userImage, setUserImage] = useState("");
 
   async function fetchColorHandler(hex) {
     const response = await fetch(`http://127.0.0.1:5000/color/${hex}`);
     const data = await response.json();
     const retrievedColor = data.color_name;
+    const retrievedRgb = data.rgb;
     setColor(retrievedColor);
+    setRgb(retrievedRgb);
+    console.log(retrievedRgb);
   }
 
   const colorPickerHandler = () => {
     const colorResult = document.getElementById("colorResult");
     const hexResult = document.getElementById("hexResult");
-    const rgbResult = document.getElementById("rgbResult");
 
     const hexToRgb = (hex) => {
       const r = parseInt(hex.slice(1, 3), 16);
       const g = parseInt(hex.slice(3, 5), 16);
       const b = parseInt(hex.slice(5), 16);
-      setRgb([r, g, b]);
-      console.log(rgb);
     };
 
     const eyeDropper = new EyeDropper();
@@ -38,9 +38,7 @@ export default function Home() {
       .then((result) => {
         const trimmedHex = result.sRGBHex.substring(1);
         fetchColorHandler(trimmedHex);
-        console.log(trimmedHex);
         hexResult.textContent = `HEX: ${result.sRGBHex}`;
-        rgbResult.textContent = `RGB (${rgb})`;
         colorResult.style.backgroundColor = result.sRGBHex;
         hexToRgb(result.sRGBHex);
       })
@@ -119,7 +117,11 @@ export default function Home() {
               : "Use the color picker to find the name of your color!"}
           </h1>
           <h3 id="hexResult" className={classes.marginBottom} />
-          <h3 id="rgbResult" className={classes.marginBottom} />
+          {rgb && (
+            <h3 className={classes.marginBottom}>
+              RGB ({rgb[0]}, {rgb[1]}, {rgb[2]})
+            </h3>
+          )}
           <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>

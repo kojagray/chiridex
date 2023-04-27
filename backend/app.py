@@ -16,7 +16,9 @@ def calculate_match(hexcode):
     target_rgb = hex_to_rgb(hexcode)
     color_name = _calculate_match(target_rgb)
     return {
-        "color_name" : color_name
+        "color_name" : color_name,
+        "hexcode" : hexcode,
+        "rgb": list(target_rgb)
     }
 
 def hex_to_rgb(hexcode):

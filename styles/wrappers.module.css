@@ -33,6 +33,7 @@
   box-shadow: inset 0 0 10px 1px lightblue;
   display: flex;
   height: 35vh;
+  outline: 1px solid lightblue;
   position: relative;
   width: 35vh;
   justify-content: center;
@@ -40,14 +41,17 @@
 
 .placeholderButton {
   position: absolute;
+  border-radius: 15px;
   height: 100%;
   width: 100%;
 }
 
 .placeholderButton:hover {
   cursor: pointer;
-  background-color: rgba(170, 215, 230, 0.1);
-  border-radius: 15px;
+  box-shadow: inset 0 0 100px 25px rgba(170, 215, 230, 0.1);
+  outline: 1px solid lightskyblue;
+  transition: 100ms;
+  transition-timing-function: ease-in-out;
 }
 
 .primaryContainer:hover {

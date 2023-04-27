@@ -4,8 +4,8 @@
   display: flex;
   height: fit-content;
   justify-content: center;
-  margin: 0 0.5rem;
-  padding: 1rem;
+  margin: 0 0.5vmin;
+  padding: 1vmin;
   width: fit-content;
 }
 
@@ -16,19 +16,8 @@
 .colorResult {
   border: 1px solid lightgray;
   border-radius: 15px;
-  height: 5rem;
+  height: 100%;
   width: 100%;
-}
-
-.image {
-  object-fit: "cover";
-}
-
-.imageWrapper {
-  height: calc(50vmin - 2vmin - 2vmin);
-  margin-top: 1rem;
-  position: relative;
-  width: auto;
 }
 
 .imageControlWrapper {
@@ -43,13 +32,33 @@
   display: flex;
   height: fit-content;
   justify-content: center;
-  margin: 0 0.5rem;
-  padding: 1rem;
+  margin: 0 0.5vmin;
+  padding: 1vmin;
   width: fit-content;
 }
 
 .imageInput:hover {
   cursor: pointer;
+}
+
+.imageWrapper {
+  height: fit-content;
+  margin-top: 1vmin;
+  position: relative;
+  width: auto;
+}
+
+.targetImage {
+  height: 100%;
+  width: 100%;
+}
+
+.textResult {
+  margin-bottom: 1vmin;
+}
+
+.title {
+  margin-bottom: 1vmin;
 }
 
 /* button wrapper colors */

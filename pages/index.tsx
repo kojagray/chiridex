@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ColorizeIcon from "@mui/icons-material/Colorize";
@@ -38,7 +37,7 @@ export default function Home() {
       .open()
       .then((result) => {
         hexResult.textContent = `HEX: ${result.sRGBHex}`;
-        rgbResult.textContent = `RGB(${rgb})`;
+        rgbResult.textContent = `RGB (${rgb})`;
         colorResult.style.backgroundColor = result.sRGBHex;
         hexToRgb(result.sRGBHex);
       })
@@ -84,25 +83,24 @@ export default function Home() {
             </div>
           </nav>
           <div className={classes.imageWrapper}>
-            <Image
+            <img
               alt="An image for color picking"
+              className={classes.targetImage}
               id="targetImage"
               src={userImage}
-              fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
             />
           </div>
         </div>
 
         <div className="tower padded roundedTile">
-          <h1>
+          <h1 className={classes.title}>
             {color
               ? `The color you chose is called ${color}`
               : "Use the color picker to find the name of your color!"}
           </h1>
-          <br />
-          <span id="hexResult" className={classes.textResult} />
-          <span id="rgbResult" className={classes.textResult} />
+          <h3 id="hexResult" className={classes.textResult} />
+          <h3 id="rgbResult" className={classes.textResult} />
           <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>

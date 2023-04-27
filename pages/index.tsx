@@ -64,7 +64,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className="centered">
-        <div className="tower padded roundedTile">
+        <div className="tower padded roundedTile primary">
           <nav className={classes.imageControlWrapper}>
             <label
               className={`${classes.primaryContainer} ${classes.blue}`}
@@ -110,10 +110,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="tower padded roundedTile">
+        <div className="tower padded roundedTile secondary">
           <h1 className={classes.marginBottom}>
             {color
-              ? `The color you chose is called ${color}`
+              ? `The color you chose is called "${color}"`
               : "Use the color picker to find the name of your color!"}
           </h1>
           <h3 id="hexResult" className={classes.marginBottom} />

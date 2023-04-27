@@ -80,6 +80,10 @@ h5 {
 
 @media only screen and (orientation: landscape) {
   .centered {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .primary {
+    grid-column: 1/3;
   }
 }

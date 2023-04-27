@@ -34,6 +34,10 @@ body {
   box-shadow: 0 15px 30px 5px lightgray;
 }
 
+.small {
+  width: 50%;
+}
+
 .tower {
   display: flex;
   flex-direction: column;

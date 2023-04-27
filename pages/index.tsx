@@ -13,12 +13,11 @@ export default function Home() {
     "/../public/monkey-head-nebula.jpg"
   );
 
-  async function fetchColorHandler(r, g, b) {
-    const response = await fetch(`http://127.0.0.1:5000/color/${r}/${g}/${b}`);
+  async function fetchColorHandler(hex) {
+    const response = await fetch(`http://127.0.0.1:5000/color/${hex}`);
     const data = await response.json();
     const retrievedColor = data.color_name;
     setColor(retrievedColor);
-    setRgb([r, g, b]);
   }
 
   const colorPickerHandler = () => {
@@ -30,7 +29,8 @@ export default function Home() {
       const r = parseInt(hex.slice(1, 3), 16);
       const g = parseInt(hex.slice(3, 5), 16);
       const b = parseInt(hex.slice(5), 16);
-      fetchColorHandler(r, g, b);
+      setRgb([r, g, b]);
+      console.log(rgb);
     };
 
     const eyeDropper = new EyeDropper();
@@ -38,6 +38,9 @@ export default function Home() {
     eyeDropper
       .open()
       .then((result) => {
+        const trimmedHex = result.sRGBHex.substring(1);
+        fetchColorHandler(trimmedHex);
+        console.log(trimmedHex);
         hexResult.textContent = `HEX: ${result.sRGBHex}`;
         rgbResult.textContent = `RGB (${rgb})`;
         colorResult.style.backgroundColor = result.sRGBHex;

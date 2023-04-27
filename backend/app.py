@@ -20,7 +20,6 @@ def calculate_match(hexcode):
     }
 
 def hex_to_rgb(hexcode):
-    hexcode = hexcode[1:] 
     rs, gs, bs = hexcode[0:2], hexcode[2:4], hexcode[4:]
     r, g, b = int(rs, 16), int(gs, 16), int(bs, 16)
 

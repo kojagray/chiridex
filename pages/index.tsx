@@ -1,12 +1,14 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
+
+import classes from "../styles/wrappers.module.css";
+
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ColorizeIcon from "@mui/icons-material/Colorize";
-import classes from "../styles/wrappers.module.css";
 
 export default function Home() {
   const [color, setColor] = useState("");
+  const [rgb, setRgb] = useState([]);
   const [userImage, setUserImage] = useState(
     "/../public/monkey-head-nebula.jpg"
   );
@@ -16,16 +18,18 @@ export default function Home() {
     const data = await response.json();
     const retrievedColor = data.color_name;
     setColor(retrievedColor);
+    setRgb([r, g, b]);
   }
 
   const colorPickerHandler = () => {
     const colorResult = document.getElementById("colorResult");
-    const textResult = document.getElementById("textResult");
+    const hexResult = document.getElementById("hexResult");
+    const rgbResult = document.getElementById("rgbResult");
 
     const hexToRgb = (hex) => {
-      var r = parseInt(hex.slice(1, 3), 16);
-      var g = parseInt(hex.slice(3, 5), 16);
-      var b = parseInt(hex.slice(5), 16);
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5), 16);
       fetchColorHandler(r, g, b);
     };
 
@@ -34,7 +38,8 @@ export default function Home() {
     eyeDropper
       .open()
       .then((result) => {
-        textResult.textContent = result.sRGBHex;
+        hexResult.textContent = `HEX: ${result.sRGBHex}`;
+        rgbResult.textContent = `RGB (${rgb})`;
         colorResult.style.backgroundColor = result.sRGBHex;
         hexToRgb(result.sRGBHex);
       })
@@ -63,11 +68,10 @@ export default function Home() {
         <div className="tower padded roundedTile">
           <nav className={classes.imageControlWrapper}>
             <label
-              className={`${classes.imageInput} ${classes.blue}`}
+              className={`${classes.primaryContainer} ${classes.blue}`}
               htmlFor="imageInput"
             >
               <AddPhotoAlternateIcon />
-
               <input
                 hidden
                 id="imageInput"
@@ -75,28 +79,29 @@ export default function Home() {
                 type="file"
               />
             </label>
-            <div className={`${classes.buttonWrapper} ${classes.green}`}>
+            <div className={`${classes.primaryContainer} ${classes.green}`}>
               <ColorizeIcon id="colorPicker" onClick={colorPickerHandler} />
             </div>
           </nav>
           <div className={classes.imageWrapper}>
-            <Image
+            <img
               alt="An image for color picking"
+              className={classes.targetImage}
               id="targetImage"
               src={userImage}
-              fill
+              style={{ objectFit: "contain" }}
             />
           </div>
         </div>
 
         <div className="tower padded roundedTile">
-          <h1>
+          <h1 className={classes.marginBottom}>
             {color
               ? `The color you chose is called ${color}`
               : "Use the color picker to find the name of your color!"}
           </h1>
-          <br />
-          <span id="textResult" className={classes.textResult} />
+          <h3 id="hexResult" className={classes.marginBottom} />
+          <h3 id="rgbResult" className={classes.marginBottom} />
           <span id="colorResult" className={classes.colorResult} />
         </div>
       </div>

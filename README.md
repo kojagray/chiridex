@@ -8,3 +8,4 @@ A tool that assists artists in creating custom color palettes from random select
   ~~- random image (jake)~~
   ~~- input type=file (nolan)~~
 - style the page (nolan; will always be in progress)
+- uniformity in displaying data from API (nolan)

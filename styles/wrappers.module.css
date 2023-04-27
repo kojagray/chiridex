@@ -39,6 +39,17 @@
   justify-content: center;
 }
 
+.imageWrapper {
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  margin-top: 2vmin;
+  position: relative;
+  width: auto;
+}
+
 .placeholderButton {
   position: absolute;
   border-radius: 15px;
@@ -56,17 +67,6 @@
 
 .primaryContainer:hover {
   cursor: pointer;
-}
-
-.imageWrapper {
-  align-items: center;
-  border-radius: 15px;
-  display: flex;
-  height: fit-content;
-  justify-content: center;
-  margin-top: 1vmin;
-  position: relative;
-  width: auto;
 }
 
 .targetImage {

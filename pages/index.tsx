@@ -119,7 +119,7 @@ export default function Home() {
           <h3 id="hexResult" className={classes.marginBottom} />
           {rgb && (
             <h3 className={classes.marginBottom}>
-              RGB ({rgb[0]}, {rgb[1]}, {rgb[2]})
+              RGB({rgb[0]},{rgb[1]},{rgb[2]})
             </h3>
           )}
           <span id="colorResult" className={classes.colorResult} />

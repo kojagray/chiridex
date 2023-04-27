@@ -63,7 +63,7 @@ export default function Home() {
         <title>The Handiest Color Picker</title>
         <meta
           name="description"
-          content="Tool for getting color values from images"
+          content="A tool that assists artists in creating custom color palettes from random selection, image input, mood descriptions, and suggestions based on different perspectives on color harmony."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>

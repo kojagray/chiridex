@@ -35,5 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # python 
-/backend/__pycache__
-*.ipynb
+__pycache__/
+

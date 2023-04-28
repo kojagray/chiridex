@@ -5,7 +5,7 @@ from PIL import Image
 from pprint import pprint
 from sklearn.cluster import KMeans
 
-from cdb_api import _calculate_match
+from match_helpers import _calculate_match
 
 def colored_square(r, g, b):
     cblock = f"\033[48:2::{int(r)}:{int(g)}:{int(b)}m \033[49m"
@@ -15,7 +15,7 @@ def colored_square(r, g, b):
     return csquare
 
 if __name__=="__main__":
-    test_image_path = "../public/monkey-head-nebula.jpg"
+    test_image_path = "../public/42069069_715870422081244_3220977222890291200_n.jpg"
     test_image = Image.open(test_image_path)
     test_image = test_image.resize((256,256))
     image_matrix = np.array(test_image)

@@ -10,6 +10,7 @@ export default function Home() {
   const [color, setColor] = useState("");
   const [rgb, setRgb] = useState("");
   const [userImage, setUserImage] = useState("");
+  const [palette, setPalette] = useState([]);
 
   async function fetchColorHandler(hex) {
     const response = await fetch(`http://127.0.0.1:5000/color/${hex}`);
@@ -42,9 +43,22 @@ export default function Home() {
 
   const onImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
-      setUserImage(URL.createObjectURL(event.target.files[0]));
+      const file = event.target.files[0];
+      setUserImage(URL.createObjectURL(file));
+      sendImageToBackend(file)
     }
   };
+
+  async function sendImageToBackend(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+    const response = await fetch("http://127.0.0.1:5000/color/generate_palette", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    setPalette(data['palette'])
+  }
 
   return (
     <>
@@ -107,7 +121,7 @@ export default function Home() {
           <h1 className={classes.marginBottom}>
             {color
               ? `The color you chose is called "${color}"`
-              : "Use the color picker to find the name of your color!"}
+             : "Use the color picker to find the name of your color!"}
           </h1>
           <h3 id="hexResult" className={classes.marginBottom} />
           {rgb && (
@@ -116,6 +130,22 @@ export default function Home() {
             </h3>
           )}
           <span id="colorResult" className={classes.colorResult} />
+        </div>
+      </div>
+
+      <div className={classes.primaryContainer}>
+        <div className={classes.paletteWrapper}>
+          {palette && palette.map((swatch, index) => (
+              <div key={index}>
+                <div 
+                className={classes.paletteSwatch} 
+                style={{ backgroundColor: swatch.hexcode }} >
+                </div>
+              <p>{swatch.color_name}</p>
+              <p>{swatch.hexcode}</p>
+              </div>
+          ))
+          }
         </div>
       </div>
     </>

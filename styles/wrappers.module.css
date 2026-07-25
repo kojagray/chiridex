@@ -50,6 +50,18 @@
   width: auto;
 }
 
+.paletteWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2vmin;
+}
+
+.paletteSwatch {
+  border-radius: 15px;
+  width: 8vh;
+  height: 8vh;
+}
+
 .placeholderButton {
   position: absolute;
   border-radius: 15px;

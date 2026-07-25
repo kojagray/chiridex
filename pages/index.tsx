@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>The Handiest Color Picker</title>
+        <title>chiridex</title>
         <meta
           name="description"
           content="A tool that assists artists in creating custom color palettes from random selection, image input, mood descriptions, and suggestions based on different perspectives on color harmony."
@@ -120,8 +120,8 @@ export default function Home() {
         <div className="tower padded roundedTile secondary">
           <h1 className={classes.marginBottom}>
             {color
-              ? `The color you chose is called "${color}"`
-             : "Use the color picker to find the name of your color!"}
+              ? `${color}`
+             : ""}
           </h1>
           <h3 id="hexResult" className={classes.marginBottom} />
           {rgb && (

@@ -10,9 +10,11 @@ export default function Home() {
   const [color, setColor] = useState("");
   const [rgb, setRgb] = useState("");
   const [userImage, setUserImage] = useState("");
-  const [palette, setPalette] = useState([]);
+  const [palette, setPalette] = useState<
+    { hexcode: string; color_name: string }[]
+  >([]);
 
-  async function fetchColorHandler(hex) {
+  async function fetchColorHandler(hex: string) {
     const response = await fetch(`http://127.0.0.1:5000/color/${hex}`);
     const data = await response.json();
     const retrievedColor = data.color_name;
@@ -37,11 +39,11 @@ export default function Home() {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       setUserImage(URL.createObjectURL(file));
-      sendImageToBackend(file)
+      calculatePalette(file)
     }
   };
 
-  async function sendImageToBackend(file) {
+  async function calculatePalette(file: File) {
     const formData = new FormData();
     formData.append("image", file);
     const response = await fetch("http://127.0.0.1:5000/color/generate_palette", {

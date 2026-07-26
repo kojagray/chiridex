@@ -22,14 +22,14 @@ def generate_palette_endpoint():
     image_mtx = np.array(image.resize((256,256)))
     color_array = image_mtx.reshape((-1, image_mtx.shape[-1]))
 
-    km = KMeans(n_clusters=8).fit(color_array) #TODO variable palette size 
+    km = KMeans(n_clusters=8).fit(color_array) #TODO variable palette size
     km_labeled = np.column_stack([color_array, km.labels_])
 
     palette = []
     for label in set(km.labels_):
         mask = km_labeled[:, -1] == label 
         mask_colors = km_labeled[mask][:, :-1].mean(0)
-        avg_color = tuple(mask_colors[:-1])
+        avg_color = mask_colors[:3]
         hexcode = rgb_to_hex(avg_color)
 
         match_name = calculate_match(avg_color)

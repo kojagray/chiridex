@@ -43,11 +43,11 @@
   align-items: center;
   border-radius: 15px;
   display: flex;
-  height: fit-content;
+  height: 60vh;
   justify-content: center;
   margin-top: 2vmin;
   position: relative;
-  width: auto;
+  width: 100%;
 }
 
 .paletteWrapper {

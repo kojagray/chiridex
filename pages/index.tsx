@@ -2,9 +2,9 @@ import Head from "next/head";
 import { useState } from "react";
 
 import classes from "../styles/wrappers.module.css";
+import { useColorPicker } from "../hooks/useColorPicker";
 
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import ColorizeIcon from "@mui/icons-material/Colorize";
 
 export default function Home() {
   const [color, setColor] = useState("");
@@ -22,24 +22,16 @@ export default function Home() {
     console.log(retrievedRgb);
   }
 
-  const colorPickerHandler = () => {
-    const colorResult = document.getElementById("colorResult");
-    const hexResult = document.getElementById("hexResult");
+  const { canvasRef, handleImageLoad, handleImageClick } = useColorPicker(
+    (hex) => {
+      fetchColorHandler(hex.substring(1));
 
-    const eyeDropper = new EyeDropper();
-
-    eyeDropper
-      .open()
-      .then((result) => {
-        const trimmedHex = result.sRGBHex.substring(1);
-        fetchColorHandler(trimmedHex);
-        hexResult.textContent = `HEX: ${result.sRGBHex}`;
-        colorResult.style.backgroundColor = result.sRGBHex;
-      })
-      .catch((e) => {
-        colorResult.textContent = e;
-      });
-  };
+      const hexResult = document.getElementById("hexResult");
+      const colorResult = document.getElementById("colorResult");
+      if (hexResult) hexResult.textContent = `HEX: ${hex}`;
+      if (colorResult) colorResult.style.backgroundColor = hex;
+    }
+  );
 
   const onImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
@@ -85,9 +77,6 @@ export default function Home() {
                 type="file"
               />
             </label>
-            <div className={`${classes.primaryContainer} ${classes.green}`}>
-              <ColorizeIcon id="colorPicker" onClick={colorPickerHandler} />
-            </div>
           </nav>
           <div className={classes.imageWrapper}>
             {!!userImage ? (
@@ -97,6 +86,8 @@ export default function Home() {
                 id="targetImage"
                 src={userImage}
                 style={{ objectFit: "contain" }}
+                onLoad={handleImageLoad}
+                onClick={handleImageClick}
               />
             ) : (
               <div className={classes.imagePlaceholder}>
@@ -115,6 +106,7 @@ export default function Home() {
               </div>
             )}
           </div>
+          <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
 
         <div className="tower padded roundedTile secondary">

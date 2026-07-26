@@ -19,7 +19,7 @@ app.config["CORS_HEADERS"] = "Content-Type"
 def generate_palette_endpoint():
     image_data = request.files["image"] 
     image = Image.open(image_data)
-    image_mtx = np.array(image.resize((256,256)))
+    image_mtx = np.array(image.resize((64,64)))
     color_array = image_mtx.reshape((-1, image_mtx.shape[-1]))
 
     km = KMeans(n_clusters=8).fit(color_array) #TODO variable palette size

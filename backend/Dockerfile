@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN uv pip install --system --no-cache -r requirements.txt
 
-COPY backend/ .
+COPY . .
 
 EXPOSE 5000
 

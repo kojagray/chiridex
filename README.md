@@ -61,11 +61,32 @@ which samples at the OS level and so can pick up pixels outside the page.
 
 ## Roadmap
 
-- **Light/shadow families (Reilly method).** Split an image into a light group
-  and a shadow group and return a palette for each, plus the value gap between
-  them. Needs clustering in Lab rather than RGB, since shadows are distinguished
-  from dark materials by color temperature (the `b*` axis) rather than by
-  lightness alone.
+See [docs/light-shadow-plan.md](docs/light-shadow-plan.md) for the
+implementation plan behind the first two items.
+
+- **Light/shadow families (Reilly method).** Rank the palette by lightness and
+  let the user assign each swatch to the light or shadow family, then report the
+  value gap between the two. The assignment has to be the user's: whether a
+  mid-grey is a white wall in shade or a grey wall in sun depends on
+  understanding the scene, and no amount of arithmetic on the pixel can tell you
+  which. Clustering in Lab matters here because it keeps a warm sunlit dark and
+  a cool shadow in *separate* swatches — otherwise they can merge into one and
+  there is no way to tag them differently.
+- **Value-only view.** Render the image as pure `L*` greyscale, which is what
+  squinting at a reference is meant to approximate. Doing it in Lab avoids the
+  usual desaturation bug where pure green and pure blue come out the same shade
+  despite being far apart in lightness.
+- **Posterize to N value steps.** Flatten the image to 3–9 flat greys — the
+  classic notan / value study. Cluster on `L*` alone and paint each pixel its
+  cluster's value. The light/shadow view is this with N=2.
+- **Terminator outline.** Trace the boundary between the two families; it comes
+  free once the family mask exists, and it's the hardest edge to place by eye.
+- **Compression preview.** When the families overlap, show what the image would
+  look like with the shadows squeezed into a tighter band — the adjustment the
+  painter would actually have to make. The only item here that suggests what to
+  *do* rather than reporting what's wrong.
+- **Export the palette** as a PNG strip with names and values, so it can sit
+  next to a canvas instead of only in a browser tab.
 - **Variable palette size** — currently hardcoded to 8 clusters
   (`backend/app.py`).
 - **Other input modes.** The original scope also included random palette
@@ -77,5 +98,5 @@ which samples at the OS level and so can pick up pixels outside the page.
 - Match colors in Lab space instead of RGB. Euclidean distance in RGB doesn't
   track perceived difference, so the nearest name is occasionally not the
   closest-looking one.
-- `colordb.csv` is parsed twice at startup — once in `match_helpers.py` (used)
-  and once in `app.py` (unused).
+    - basically: better matches and ranking by accurate "brightness"
+- colorsdb should have a lab axis as well
